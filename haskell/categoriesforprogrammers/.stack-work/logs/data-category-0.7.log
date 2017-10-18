@@ -1,0 +1,31 @@
+Configuring data-category-0.7...
+Building data-category-0.7...
+Preprocessing library data-category-0.7...
+[ 1 of 21] Compiling Data.Category    ( Data/Category.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category.o )
+[ 2 of 21] Compiling Data.Category.Product ( Data/Category/Product.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Product.o )
+[ 3 of 21] Compiling Data.Category.Functor ( Data/Category/Functor.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Functor.o )
+[ 4 of 21] Compiling Data.Category.NaturalTransformation ( Data/Category/NaturalTransformation.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/NaturalTransformation.o )
+[ 5 of 21] Compiling Data.Category.RepresentableFunctor ( Data/Category/RepresentableFunctor.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/RepresentableFunctor.o )
+[ 6 of 21] Compiling Data.Category.Adjunction ( Data/Category/Adjunction.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Adjunction.o )
+[ 7 of 21] Compiling Data.Category.Unit ( Data/Category/Unit.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Unit.o )
+[ 8 of 21] Compiling Data.Category.Coproduct ( Data/Category/Coproduct.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Coproduct.o )
+[ 9 of 21] Compiling Data.Category.Void ( Data/Category/Void.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Void.o )
+
+Data/Category/Void.hs:39:1: warning: [-Wmissing-methods]
+    • No explicit associated type or default declaration for      ‘:%’
+    • In the instance declaration for ‘Functor (Magic k)’
+[10 of 21] Compiling Data.Category.Limit ( Data/Category/Limit.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Limit.o )
+[11 of 21] Compiling Data.Category.Comma ( Data/Category/Comma.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Comma.o )
+[12 of 21] Compiling Data.Category.Monoidal ( Data/Category/Monoidal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Monoidal.o )
+[13 of 21] Compiling Data.Category.Cube ( Data/Category/Cube.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Cube.o )
+[14 of 21] Compiling Data.Category.Dialg ( Data/Category/Dialg.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Dialg.o )
+[15 of 21] Compiling Data.Category.Kleisli ( Data/Category/Kleisli.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Kleisli.o )
+[16 of 21] Compiling Data.Category.Simplex ( Data/Category/Simplex.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Simplex.o )
+[17 of 21] Compiling Data.Category.Yoneda ( Data/Category/Yoneda.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Yoneda.o )
+[18 of 21] Compiling Data.Category.CartesianClosed ( Data/Category/CartesianClosed.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/CartesianClosed.o )
+[19 of 21] Compiling Data.Category.Boolean ( Data/Category/Boolean.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Boolean.o )
+[20 of 21] Compiling Data.Category.Fix ( Data/Category/Fix.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/Fix.o )
+[21 of 21] Compiling Data.Category.NNO ( Data/Category/NNO.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Data/Category/NNO.o )
+Installing library in
+/Users/kbrown/scripts/haskell/categoriesforprogrammers/.stack-work/install/x86_64-osx/lts-9.5/8.0.2/lib/x86_64-osx-ghc-8.0.2/data-category-0.7-9esayNcHtT8KcVNpHtp0Le
+Registering data-category-0.7...

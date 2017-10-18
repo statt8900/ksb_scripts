@@ -1,0 +1,56 @@
+#########################################################################
+#########################################################################
+#########################################################################
+class BulkPure(Object):
+	def __init__(self,inp):
+		self.trajName     = None
+		self.stoichStruct = inp
+
+	def __str__(self): return underscoreSep(1,	['PureBulk'
+												,printStoichStruct(self.stoichStruct)])
+
+	def stoich(self): return parseChemicalFormula(self.stoichStruct[0])
+	def struct(self): return structDict[self.stoichStruct[1]]
+
+	def atomList(self): 
+		"""{String:Int} -> [String]"""
+		atomDict = [[k]*v  for k, v in self.stoich().items()]                  # List of lists
+		return [item for sublist in atomDict for item in sublist] # Flattened
+	
+	def guessLat(self): return sum(radDict[a]*(2**1.5)*b for a, b in self.stoich().items())/sum(self.stoich().values())
+	
+	def makeAtoms(self,latticeParams=None):
+		from ase import Atoms
+		if latticeParams is None: latticeParams = self.struct().iGuess(self)
+		scaledPos = [self.struct().pos[i] for i in self.struct().map]
+		bravais = self.struct().bravais(*latticeParams)
+
+		return Atoms(self.atomList()
+					,scaled_positions = scaledPos
+					,cell = bravais.primVec()
+					,pbc = [1,1,1])
+
+	def iGuess(self): return self.struct().iGuess(self)
+
+	def guessTraj(self,pth):
+		from ase    import  io
+		io.write(pth+'/init.traj',self.makeAtoms())
+
+#########################################################################
+# Auxillary Functions
+############################################################################
+def dictToBulk(dictC): 
+	trajName = dictC['trajName']
+	stoichStruct = dictC['stoichStruct']
+	if trajName is None: return BulkPure([ s.encode('ascii') for s in stoichStruct])
+	else:                return BulkTraj(trajName)
+
+def parseBulk(x):
+	kind,inp = derscoreSep(1,x)
+	if kind == 'PureBulk': return BulkPure(parseStoichStruct(inp))
+	else: return BulkTraj(inp)
+
+def vecAngle(x,y):
+	magX,magY = np.linalg.norm(x),np.linalg.norm(y)
+	cosAng= np.dot(x,y)/magX/magY
+	return math.degrees(math.acos(cosAng))

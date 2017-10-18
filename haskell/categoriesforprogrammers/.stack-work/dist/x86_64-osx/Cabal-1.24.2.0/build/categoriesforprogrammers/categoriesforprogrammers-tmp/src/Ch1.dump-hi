@@ -1,0 +1,413 @@
+
+==================== FINAL INTERFACE ====================
+2017-09-22 16:50:53.573673 UTC
+
+interface main@main:Ch1 8002
+  interface hash: 85855685b74be913d3c552088fbbc853
+  ABI hash: 90b4c29b38173039ceee73bb1bf16852
+  export-list hash: 28172fd38e69270601e7da303542014c
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: e61de8ff7f977a0fc09e76816d8c3288
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Ch1.absurd
+  Ch1.f
+  Ch1.f44
+  Ch1.fInt
+  Ch1.fact
+  Ch1.false
+  Ch1.idBool
+  Ch1.memoFile
+  Ch1.memoizeFact
+  Ch1.notBool
+  Ch1.true
+  Ch1.unit
+module dependencies:
+package dependencies: array-0.5.1.1@array-0.5.1.1 base-4.9.1.0
+                      bytestring-0.10.8.1@bytestring-0.10.8.1-L7iExsmb1Cf5TULWmR5KHP
+                      cereal-0.5.4.0@cereal-0.5.4.0-3bi1813iLeYMP52jAd5wv
+                      containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz
+                      deepseq-1.4.2.0@deepseq-1.4.2.0
+                      directory-1.3.1.2@directory-1.3.1.2-EwNoQtMQK7z2MTw1tMRtSA
+                      filepath-1.4.1.1@filepath-1.4.1.1 ghc-prim-0.5.0.0
+                      integer-gmp-1.0.0.1 time-1.6.0.1@time-1.6.0.1
+                      unix-2.7.2.1@unix-2.7.2.1-L45OSgPOCVT2iOTigX33RM
+orphans: base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+         bytestring-0.10.8.1@bytestring-0.10.8.1-L7iExsmb1Cf5TULWmR5KHP:Data.ByteString.Builder
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
+         time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
+family instance modules: base-4.9.1.0:Control.Applicative
+                         base-4.9.1.0:Data.Complex base-4.9.1.0:Data.Either
+                         base-4.9.1.0:Data.Functor.Const base-4.9.1.0:Data.Functor.Identity
+                         base-4.9.1.0:Data.List.NonEmpty base-4.9.1.0:Data.Monoid
+                         base-4.9.1.0:Data.Semigroup base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:Data.Version base-4.9.1.0:Data.Void
+                         base-4.9.1.0:GHC.Exts base-4.9.1.0:GHC.Generics
+                         base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
+                         containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.IntMap.Internal
+                         containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.IntSet.Internal
+                         containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.Map.Internal
+                         containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.Sequence.Internal
+                         containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.Set.Internal
+                         containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.Tree
+import  -/  base-4.9.1.0:Data.Either 20b09ef8d0a5b74fdec011c40c1587f5
+import  -/  base-4.9.1.0:Data.Foldable 3e0b6967a1da89945d0e2d47266337a2
+import  -/  base-4.9.1.0:Data.Void 3c797a21706a51366e113ccecc813336
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
+import  -/  base-4.9.1.0:GHC.Err 3bba35a16538d33d424682ce66876cdd
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  base-4.9.1.0:System.IO c9de64c5f5407c4cf1c52500c4d15200
+import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1-L7iExsmb1Cf5TULWmR5KHP:Data.ByteString 739194375bcd70c02291d82363c3cb81
+import  -/  cereal-0.5.4.0@cereal-0.5.4.0-3bi1813iLeYMP52jAd5wv:Data.Serialize 4d0e642307b7862c03293a48a1ad4e77
+import  -/  containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.Map feef51cca1b9b8adcc3765c58c08cea5
+import  -/  containers-0.5.10.2@containers-0.5.10.2-BsNvjXoQS1iGZ9xbXaQ0Mz:Data.Map.Internal 6a24602b7366225dd4fb310c3d509df8
+import  -/  directory-1.3.1.2@directory-1.3.1.2-EwNoQtMQK7z2MTw1tMRtSA:System.Directory 2bb8c8637cafcd32280d4795e79a8dd0
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
+import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
+import  -/  integer-gmp-1.0.0.1:GHC.Integer.Type 318df275d77dcdb18e0006d8d7870c2a
+9695e46f44b04e146c1ccba9774ac95f
+  $s!1 ::
+    GHC.Integer.Type.Integer
+    -> Data.Map.Internal.Map GHC.Integer.Type.Integer a -> a
+  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+6a0b4861d62569fb1824d771dfd091fe
+  $sinsert_$sgo13 ::
+    GHC.Integer.Type.Integer
+    -> GHC.Integer.Type.Integer
+    -> a1
+    -> Data.Map.Internal.Map GHC.Integer.Type.Integer a1
+    -> Data.Map.Internal.Map GHC.Integer.Type.Integer a1
+  {- Arity: 4, Strictness: <L,U><S,1*U><L,U><S,1*U> -}
+cdf2b3d07c97066b50f643b8fca84837
+  $smember1 ::
+    GHC.Integer.Type.Integer
+    -> Data.Map.Internal.Map GHC.Integer.Type.Integer a
+    -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+ad9dbdaa8f14c17edb315d0e4ec4958e
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module Ch1.$trModule2 Ch1.$trModule1) -}
+68a40be75e44f4fd0f4f1cde0f5ff51d
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Ch1"#) -}
+2801a89b57e90daa1d880206ff14496c
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "main"#) -}
+633a8c393b58a08c50df67c09f05686c
+  absurd :: Data.Void.Void -> a
+  {- Strictness: x -}
+0d82e8d8d2946eeb8016bbdc06da8eb8
+  f :: GHC.Types.Bool -> GHC.Types.Bool
+  {- Strictness: x -}
+6ddbcc4b18854bf912eee59aadab6691
+  f1 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (44) -}
+23415afc4920a53851cab4ab64fe4b46
+  f44 :: () -> GHC.Integer.Type.Integer
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*H>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: ()) -> case ds of wild { () -> Ch1.f1 }) -}
+523ea85654b754ba846dfa505d27d2aa
+  fInt :: GHC.Integer.Type.Integer -> ()
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: GHC.Integer.Type.Integer) -> GHC.Tuple.()) -}
+12ca651a87d69d5b3aee813fc289d1bf
+  fact :: (GHC.Enum.Enum a, GHC.Num.Num a) => a -> a
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <S(LLLLLLC(C(S))L),1*U(A,A,A,A,A,A,1*C1(C1(U)),A)><L,U(A,A,1*U,A,A,A,C(U))><L,U>,
+     Unfolding: (\ @ a
+                   ($dEnum :: GHC.Enum.Enum a)
+                   ($dNum :: GHC.Num.Num a)
+                   (n :: a) ->
+                 let {
+                   k :: a -> a -> a = GHC.Num.* @ a $dNum
+                 } in
+                 letrec {
+                   go :: [a] -> a -> a {- Arity: 2, Strictness: <S,1*U><L,U> -}
+                   = \ (ds :: [a]) (eta :: a) ->
+                     case ds of wild { [] -> eta : y ys -> go ys (k eta y) }
+                 } in
+                 go
+                   (GHC.Enum.enumFromTo
+                      @ a
+                      $dEnum
+                      (GHC.Num.fromInteger @ a $dNum Ch1.fact1)
+                      n)
+                   (GHC.Num.fromInteger @ a $dNum Ch1.fact1)) -}
+48ebded81b474930f97db08367714df5
+  fact1 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (1) -}
+2d4b501d92898c32a69bfa87b11c98f4
+  fact_$sfact :: GHC.Integer.Type.Integer -> GHC.Integer.Type.Integer
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (n :: GHC.Integer.Type.Integer) ->
+                 letrec {
+                   go :: GHC.Integer.Type.Integer
+                         -> GHC.Integer.Type.Integer -> GHC.Integer.Type.Integer
+                     {- Arity: 2, Strictness: <S,U><S,1*U> -}
+                   = \ (x :: GHC.Integer.Type.Integer)
+                       (eta :: GHC.Integer.Type.Integer) ->
+                     case GHC.Integer.Type.gtInteger# x n of wild { DEFAULT ->
+                     case GHC.Prim.tagToEnum# @ GHC.Types.Bool wild of wild1 {
+                       GHC.Types.False
+                       -> go
+                            (GHC.Integer.Type.plusInteger x GHC.Enum.$fEnumInteger1)
+                            (GHC.Integer.Type.timesInteger eta x)
+                       GHC.Types.True -> eta } }
+                 } in
+                 go Ch1.fact1 Ch1.fact1) -}
+6c7dd8b7a43352bdff81dc81f00e9e09
+  false :: GHC.Types.Bool -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: GHC.Types.Bool) -> GHC.Types.False) -}
+796d267bcab03a3c1de9f0bfdac3fa40
+  idBool :: GHC.Types.Bool -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (0, True, True)
+                (GHC.Base.id @ GHC.Types.Bool) -}
+ea10f6f85ac8f7d5d0ab7139783c96de
+  memoFile :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "/Users/kbrown/scripts/haskell/categoriesforprogrammers/src/Ch1.txt"#) -}
+159adcf41ec925c5da5a41de3b9f7902
+  memoizeFact :: GHC.Integer.Type.Integer -> GHC.Types.IO ()
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Ch1.memoizeFact1
+                  `cast`
+                (<GHC.Integer.Type.Integer>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
+663f8e6bbe6ef07174a4aad030913ed8
+  memoizeFact1 ::
+    GHC.Integer.Type.Integer
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: (\ (a :: GHC.Integer.Type.Integer)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Ch1.memoizeFact5 `cast` (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case ipv1 of wild {
+                   GHC.Types.False
+                   -> Ch1.memoizeFact4
+                        a
+                        (Ch1.fact_$sfact a)
+                        (Data.Map.Internal.Tip
+                           @ GHC.Integer.Type.Integer
+                           @ GHC.Integer.Type.Integer)
+                        ipv
+                   GHC.Types.True
+                   -> case Data.ByteString.readFile1
+                             Ch1.memoFile
+                             ipv of ds2 { (#,#) ipv2 ipv3 ->
+                      case ipv3 of ww { Data.ByteString.Internal.PS ww1 ww2 ww3 ww4 ->
+                      let {
+                        memo :: Data.Map.Internal.Map
+                                  GHC.Integer.Type.Integer GHC.Integer.Type.Integer
+                        = case Data.Serialize.Get.$wgetListOf
+                                 @ (GHC.Integer.Type.Integer, GHC.Integer.Type.Integer)
+                                 Ch1.memoizeFact3
+                                   `cast`
+                                 (Sym (Data.Serialize.Get.N:Get[0]
+                                           <(GHC.Integer.Type.Integer,
+                                             GHC.Integer.Type.Integer)>_R))
+                                 @ (Data.Map.Internal.Map
+                                      GHC.Integer.Type.Integer GHC.Integer.Type.Integer)
+                                 ww1
+                                 ww2
+                                 ww3
+                                 ww4
+                                 (GHC.Base.Nothing @ Data.ByteString.Internal.ByteString)
+                                 Data.Serialize.Get.Complete
+                                 (Data.Serialize.Get.failK
+                                    @ (Data.Map.Internal.Map
+                                         GHC.Integer.Type.Integer GHC.Integer.Type.Integer))
+                                 Ch1.memoizeFact2 of wild1 {
+                            DEFAULT
+                            -> Data.Map.Internal.Tip
+                                 @ GHC.Integer.Type.Integer
+                                 @ GHC.Integer.Type.Integer
+                            Data.Serialize.Get.Done a1 ds -> a1 }
+                      } in
+                      case Ch1.$smember1 @ GHC.Integer.Type.Integer a memo of wild1 {
+                        GHC.Types.False -> Ch1.memoizeFact4 a (Ch1.fact_$sfact a) memo ipv2
+                        GHC.Types.True
+                        -> GHC.IO.Handle.Text.hPutStr2
+                             GHC.IO.Handle.FD.stdout
+                             (case GHC.Show.$w$cshowsPrec1
+                                     0#
+                                     (Ch1.$s!1 @ GHC.Integer.Type.Integer a memo)
+                                     (GHC.Types.[] @ GHC.Types.Char) of ww7 { (#,#) ww8 ww9 ->
+                              GHC.Types.: @ GHC.Types.Char ww8 ww9 })
+                             GHC.Types.True
+                             ipv2 } } } } }) -}
+8bc0fa8ec59dbb30e788b46c9ae36c85
+  memoizeFact2 ::
+    Data.Serialize.Get.Input
+    -> Data.Serialize.Get.Buffer
+    -> Data.Serialize.Get.More
+    -> [(GHC.Integer.Type.Integer, GHC.Integer.Type.Integer)]
+    -> Data.Serialize.Get.Result
+         (Data.Map.Internal.Map
+            GHC.Integer.Type.Integer GHC.Integer.Type.Integer)
+  {- Arity: 4,
+     Unfolding: (\ (s1 :: Data.Serialize.Get.Input)
+                   (b1 :: Data.Serialize.Get.Buffer)[OneShot]
+                   (m1 :: Data.Serialize.Get.More)[OneShot]
+                   (a1 :: [(GHC.Integer.Type.Integer,
+                            GHC.Integer.Type.Integer)])[OneShot] ->
+                 Data.Serialize.Get.Done
+                   @ (Data.Map.Internal.Map
+                        GHC.Integer.Type.Integer GHC.Integer.Type.Integer)
+                   (Data.Map.Internal.fromList
+                      @ GHC.Integer.Type.Integer
+                      @ GHC.Integer.Type.Integer
+                      GHC.Integer.Type.$fOrdInteger
+                      a1)
+                   s1) -}
+5e20e230c61071e289af85c27bdaae2d
+  memoizeFact3 ::
+    Data.Serialize.Get.Input
+    -> Data.Serialize.Get.Buffer
+    -> Data.Serialize.Get.More
+    -> Data.Serialize.Get.Failure r
+    -> Data.Serialize.Get.Success
+         (GHC.Integer.Type.Integer, GHC.Integer.Type.Integer) r
+    -> Data.Serialize.Get.Result r
+  {- Arity: 5,
+     Unfolding: (\ @ r
+                   (eta :: Data.Serialize.Get.Input)
+                   (eta1 :: Data.Serialize.Get.Buffer)[OneShot]
+                   (eta2 :: Data.Serialize.Get.More)[OneShot]
+                   (eta3 :: Data.Serialize.Get.Failure r)[OneShot]
+                   (eta4 :: Data.Serialize.Get.Success
+                              (GHC.Integer.Type.Integer, GHC.Integer.Type.Integer) r)[OneShot] ->
+                 case eta of ww { Data.ByteString.Internal.PS ww1 ww2 ww3 ww4 ->
+                 Data.Serialize.$w$cget10
+                   @ r
+                   ww1
+                   ww2
+                   ww3
+                   ww4
+                   eta1
+                   eta2
+                   eta3
+                   (\ (s1 :: Data.Serialize.Get.Input)
+                      (b1 :: Data.Serialize.Get.Buffer)[OneShot]
+                      (m1 :: Data.Serialize.Get.More)[OneShot]
+                      (a1 :: GHC.Integer.Type.Integer)[OneShot] ->
+                    case s1 of ww7 { Data.ByteString.Internal.PS ww8 ww9 ww10 ww11 ->
+                    Data.Serialize.$w$cget10
+                      @ r
+                      ww8
+                      ww9
+                      ww10
+                      ww11
+                      b1
+                      m1
+                      eta3
+                      (\ (s2 :: Data.Serialize.Get.Input)
+                         (b2 :: Data.Serialize.Get.Buffer)[OneShot]
+                         (m2 :: Data.Serialize.Get.More)[OneShot]
+                         (a2 :: GHC.Integer.Type.Integer)[OneShot] ->
+                       eta4 s2 b2 m2 (a1, a2)) }) }) -}
+7fc85ef85859f8ac33a91b91ca58a93e
+  memoizeFact4 ::
+    GHC.Integer.Type.Integer
+    -> GHC.Integer.Type.Integer
+    -> Data.Map.Internal.Map
+         GHC.Integer.Type.Integer GHC.Integer.Type.Integer
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 4, Strictness: <L,U><L,U><L,1*U><S,U>,
+     Unfolding: (\ (k :: GHC.Integer.Type.Integer)
+                   (v :: GHC.Integer.Type.Integer)
+                   (mp :: Data.Map.Internal.Map
+                            GHC.Integer.Type.Integer GHC.Integer.Type.Integer)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Data.ByteString.writeFile1
+                        Ch1.memoFile
+                        (Data.ByteString.Lazy.toStrict
+                           (Data.ByteString.Builder.toLazyByteString
+                              (case Data.Serialize.$w$cput20
+                                      @ GHC.Integer.Type.Integer
+                                      @ GHC.Integer.Type.Integer
+                                      Data.Serialize.$fSerializeInteger
+                                      Data.Serialize.$fSerializeInteger
+                                      (Ch1.$sinsert_$sgo13
+                                         @ GHC.Integer.Type.Integer
+                                         k
+                                         k
+                                         v
+                                         mp) of ww { (#,#) ww1 ww2 ->
+                               ww2 })))
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 GHC.IO.Handle.Text.hPutStr2
+                   GHC.IO.Handle.FD.stdout
+                   (GHC.Show.$fShowInteger_$cshow v)
+                   GHC.Types.True
+                   ipv }) -}
+94bb1c7ec41271e98d7de72ab0a6ffe4
+  memoizeFact5 :: GHC.Types.IO GHC.Types.Bool
+  {- Unfolding: (Ch1.memoizeFact6
+                   System.Directory.doesDirectoryExist1
+                     `cast`
+                   (<GHC.IO.Exception.IOError>_R
+                    ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R))) -}
+f4721f2eee0accdf6b211d4d05333865
+  memoizeFact6 ::
+    (GHC.IO.Exception.IOError -> GHC.Types.IO GHC.Types.Bool)
+    -> GHC.Types.IO GHC.Types.Bool
+  {- Unfolding: (System.IO.Error.catchIOError
+                   @ GHC.Types.Bool
+                   Ch1.memoizeFact7
+                     `cast`
+                   (Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R))) -}
+e08d8dd9ae9b7a73146f4631fb0b4c6f
+  memoizeFact7 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 1,
+     Unfolding: (\ (eta2 :: GHC.Prim.State#
+                              GHC.Prim.RealWorld)[OneShot] ->
+                 case System.Posix.Files.getFileStatus1
+                        Ch1.memoizeFact8
+                        eta2 of ds9 { (#,#) ipv ipv1 ->
+                 (# ipv, GHC.Types.True #) }) -}
+ca6585c3e5a06d85d61c1b2df2d9cc21
+  memoizeFact8 :: GHC.IO.FilePath
+  {- Unfolding: (System.FilePath.Posix.normalise Ch1.memoFile) -}
+81b30993dfcdd6fe9a6a0eb9bcb86975
+  notBool :: GHC.Types.Bool -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: InlineRule (0, True, True) GHC.Classes.not -}
+49766013f1a0f5cc1ae773d7a8e63dbc
+  true :: GHC.Types.Bool -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ (ds :: GHC.Types.Bool) -> GHC.Types.True) -}
+7b964dbe6756f741370c63a6700f3051
+  unit :: a -> ()
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,A>,
+     Unfolding: InlineRule (1, True, True)
+                (\ @ a (ds :: a) -> GHC.Tuple.()) -}
+"SPEC fact @ Integer" [ALWAYS] forall ($dNum :: GHC.Num.Num
+                                                  GHC.Integer.Type.Integer)
+                                      ($dEnum :: GHC.Enum.Enum GHC.Integer.Type.Integer)
+  Ch1.fact @ GHC.Integer.Type.Integer $dEnum $dNum = Ch1.fact_$sfact
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

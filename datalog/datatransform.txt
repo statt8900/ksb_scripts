@@ -1,0 +1,85 @@
+-------------------------------------------------------
+'Derivable' observables: 
+------------------------
+datalog.py concerned an easy/simple way of storing all 'irreducible' data. 
+Now we need to transform it in a way that's convenient for anyone to query/visualize the data. 
+
+Almost anything can be made into a function
+   - some things impossible to functionalize which must be specified at runtime, e.g.:
+       - what the job creator intended to do with the calculation
+   - some 'easy' things are possible-but-difficult to functionalize, e.g.:
+       - function that identifies crystal structure from coordinates
+
+We want random people in the group to be able to query the communal knowledge for properties *they're* interested in
+I.e. we need a mechanism for random people to submit *new columns* to be added
+(Alternative is people cloning the database and running their own analysis/transformation of it. Should we consider this?)
+We would need standard format of submission, e.g.:
+
+class Detail(object):
+    def __init__(self,colname,datatype,inputcols,func,author,description):
+        self.colname        = colname            Column name in database
+        self.datatype       = datatype           SQL datatype
+        self.inputcols      = inputcols          Dependencies on other columns
+        self.func           = func               Function applied to (pre-existing) columns to get result
+        self.author         = author             Author of the Detail
+        self.description    = description        Description for others to read to know what the column represents / why it is important
+
+ The above should make it easy to automatically generate documentation about what information the database contains.
+
+
+
+----------------------------
+Example 'Derived' parameters 
+----------------------------
+Initial/Final Atoms pickle object
+Calculator params (e.g pw,xc,kpt,psp,spinpol,dwrat,econv,mixing,nmix,maxstep,nbands,sigma)
+Other calc params (for vibrations,NEBs), e.g. delta, spring constants, etc.
+
+crystal_structure, number_of_atoms, vacuum, facet, magmom_init, kpt_density
+metal_elements, hydrogen_mol_fraction,adsorbed_CO, point_group, is_linear
+raw_energy, vibrational energies, activation energy
+<metric for how much the structure changed between initial and final state>
+etc.
+
+-------------------------------------------------------
+Ad-hoc user-requested edits: 
+----------------------------
+A possibly-useful feature:
+   - users are able to submit requests to modify cells of the table for their own jobs
+   - Example 1 
+       - User KSB realizes does a bunch of hybrid calculations for the first time 
+       - KSB realizes after that they were done completely wrong
+       - KSB doesn't want them in the database anymore
+       - KSB requests that the "deleted" column for these is set to True
+   - Example 2
+       - Let's say there exists no good 'coordinates to facet' function
+       - User FLORES12 submitted a bunch of jobs on Pt 211 surface but forget at runtime to specify it as a keyword
+       - He submits a request that all jobs submitted from the directory '$SCRATCH/flores12/211/*' have the column 'facet' updated to '211'
+"""
+class editRequest(object):
+    def __init__(self,constraint,colname,newvalue):
+        self.constraint = constraint     SQL query that isolates rows that are subject to update
+        self.colname    = colname        Column to update
+        self.newvalue   = newvalue       New value to update cells to
+"""
+-------------------------------------------------------
+Problems:
+---------
+ 1. Do we have to rely on runtime-specified keyword arguments for dftcode and fmax? 
+   - (i.e. is there no automatic way at runtime or a postprocessing way of getting these?)
+
+ 2. Need to think about generalizing for latticeopt-colin (initial guess not in final Atoms object) and NEBs?
+
+ 3. How is bulk modulus calculated?
+   - are there ~10 jobs that are identical except for cell size 
+        - We somehow infer those 10 jobs are related
+        - BM is a property of those 10 rows
+   - bulk modulus a 'derived property'
+       - i.e. someone writes a function that looks at a row and does a new job in order to fill a value of the table
+       - might make sense as a user-requested edit so that the centralized computing script won't have to do DFT
+
+ 4. Ideally there are multiple types of nulls:
+   - "has not been computed yet" (i.e. when a row has been initialized) == NULL
+   - "this value is undefined for this job" {"str:'RETURNS_NONE','numeric':9999999999.9,'integer':2**63-1}
+   - "there was an error when computing this cell"
+    {"str:'ERROR: '<traceback>,'numeric':-9999999999.9,'integer':-2**63+1}

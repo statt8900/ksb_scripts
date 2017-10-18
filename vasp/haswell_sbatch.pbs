@@ -1,0 +1,27 @@
+#!/bin/csh
+#SBATCH -p debug
+#SBATCH -N  1
+#SBATCH -A jcap
+#SBATCH -e err.log
+#SBATCH -o opt.log
+#SBATCH -t 00:01:00
+##SBATCH --qos=premium
+#SBATCH -C haswell
+##SBATCH --mail-user=ksb@stanford.edu
+## 24 cores (edison) 32 cpus (cori)
+
+module load python #numpy scipy matplotlib
+setenv PYTHONPATH /global/homes/k/krisb/ase-3.15.0/lib/python2.7/site-packages:$PYTHONPATH
+
+module load vasp
+which vasp_std
+
+cd $SLURM_SUBMIT_DIR
+setenv TMPDIR $SLURM_SUBMIT_DIR
+echo "import os" > run_vasp.py
+echo "exitcode = os.system('srun -n 32 /global/cscratch1/sd/jgauth32/from_slac_co2_ads/eb_4/vasp_std')" >> run_vasp.py
+
+setenv VASP_SCRIPT ./run_vasp.py
+setenv VASP_PP_PATH /project/projectdirs/jcap/bajdich/vasp/pseudo52
+python ./gga_u.py  #
+#python ./run_vasp.py #--- use if running vasp natively, not via ase

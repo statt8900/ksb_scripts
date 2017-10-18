@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+
+from ase import io
+import os
+import sys
+import glob
+
+import numpy as np
+
+from ase.optimize import FIRE
+from ase.neb import NEB
+from ase.visualize import view
+from espresso.multiespresso import multiespresso
+
+xc = 'BEEF'
+
+if not os.path.exists('backup_neb'):
+	os.makedirs('backup_neb')
+os.system('cp neb*.traj backup_neb')
+
+nebfiles = glob.glob('neb*.traj')
+prev_num=len(nebfiles)
+
+
+init_image=int(sys.argv[1])  # which image is the initial one?  0 indicates the initial.traj
+print 'init image'
+print str(init_image)
+
+
+new_images=int(sys.argv[2])  # how many images to interpolate?
+print 'new images'
+print str(new_images)
+
+
+
+
+
+# rename some of the other files  - need to reverse range as last files should be renamed first
+for j in reversed(range(init_image+1,prev_num+1)):
+	prev_image='neb%d.traj' %j 
+	new_image='neb%d.traj' %(j+new_images) 
+	print 'moving'
+	print prev_image
+	print new_image
+	print '--'
+	os.system('mv '+prev_image+' '+new_image) 
+
+
+
+
+#these trajectories have to contain total energies and forces besides the coordinates
+if init_image == 0:
+	initial = io.read('initial.traj')
+else:
+	initial = io.read('neb%d.traj' %(init_image))
+	
+if 	init_image+new_images >  prev_num:
+	final = io.read('final.traj')
+else:
+	final = io.read('neb%d.traj' %(init_image+new_images+1) )
+
+
+images = [initial]
+for i in range(new_images):
+     images.append(initial.copy())
+images.append(final)
+neb = NEB(images)
+neb.interpolate()
+
+
+
+for j in range(1,new_images+1):
+    traj = 'neb%d.traj' %(j+init_image)
+    io.write(traj,images[j])
+

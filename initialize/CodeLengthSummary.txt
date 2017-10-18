@@ -1,0 +1,13 @@
++--------------------------+----------+----------+------+-------------+---------+
+|           File           | Language | Comments | Code | Definitions | Size,kB |
++--------------------------+----------+----------+------+-------------+---------+
+|   createBinaryAlloy.py   |  Python  |    71    |  0   |      1      |    3    |
+|      createBulks.py      |  Python  |    24    | 115  |      3      |    6    |
+|   initializeAdsSurf.py   |  Python  |    26    | 113  |      3      |    6    |
+|  initializeBareSurf.py   |  Python  |    45    | 196  |      9      |    11   |
+|  initializeBulkJobs.py   |  Python  |    25    |  64  |      2      |    5    |
+|   initializeCommon.py    |  Python  |    14    |  18  |      0      |    1    |
+|   initializeHydride.py   |  Python  |    7     |  83  |      2      |    4    |
+| initializeSurfaceJobs.py |  Python  |    25    |  44  |      1      |    3    |
+|          Total           |    -     |   237    | 633  |      21     |    39   |
++--------------------------+----------+----------+------+-------------+---------+

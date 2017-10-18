@@ -1,0 +1,21 @@
++--------------------------------------------+----------+----------+------+-------------+---------+
+|                    File                    | Language | Comments | Code | Definitions | Size,kB |
++--------------------------------------------+----------+----------+------+-------------+---------+
+|             bulk_metal_SLAC.py             |  Python  |    28    |  79  |      0      |    4    |
+|                colinopt.py                 |  Python  |    44    |  36  |      1      |    3    |
+|               colinopt1d.py                |  Python  |    43    |  42  |      1      |    3    |
+|             initializeJobs.py              |  Python  |    11    |  16  |      3      |    1    |
+|            lattice_opt_orig.py             |  Python  |    40    |  59  |      1      |    3    |
+|              latticeOpt3D.py               |  Python  |    43    |  37  |      1      |    3    |
+|            opt_fmin_1D_SLAC.py             |  Python  |    13    |  65  |      1      |    2    |
+|  vcRelax-beef-500-888-nonmag-gbrv15pbe.py  |  Python  |    17    |  49  |      0      |    3    |
+|  vcRelax-beef-800-888-nonmag-esppspv2.py   |  Python  |    17    |  49  |      0      |    3    |
+| vcRelax-pbesol-800-888-nonmag-esppspv2.py  |  Python  |    17    |  49  |      0      |    3    |
+| vcRelax-pbesol-800-888-nonmag-gbrv15pbe.py |  Python  |    17    |  48  |      0      |    3    |
+|  vcRelax-rpbe-800-888-nonmag-esppspv2.py   |  Python  |    17    |  49  |      0      |    3    |
+|                 vcrelax.py                 |  Python  |    52    | 106  |      0      |    5    |
+|               vcrelaxSLAC.py               |  Python  |    28    |  65  |      0      |    3    |
+|    vib-beef-800-888-nonmag-esppspv2.py     |  Python  |    7     |  33  |      0      |    1    |
+|    vib-rpbe-800-888-nonmag-esppspv2.py     |  Python  |    7     |  34  |      0      |    1    |
+|                   Total                    |    -     |   401    | 816  |      8      |    44   |
++--------------------------------------------+----------+----------+------+-------------+---------+

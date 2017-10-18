@@ -1,0 +1,181 @@
+import warnings
+warnings.filterwarnings("ignore", message="Moved to ase.neighborlist")
+
+from itertools 			import product 	# For cartesian product
+from ast 				import literal_eval
+from ase 				import io
+from ase.db 			import connect
+from ase.visualize 		import view
+from ase.constraints 	import FixAtoms
+from emt  				import EMT
+from constraint 		import *
+from filters 			import *
+from db 				import plotQuery
+from initializeCommon 	import adsDomain
+
+from pymatgen 						import Molecule
+from pymatgen.io.ase 				import AseAtomsAdaptor
+from pymatgen.analysis.adsorption 	import AdsorbateSiteFinder
+
+from printParse 		import printAds,alphaNumSplit
+from initializeBareSurf import makeSlab,constrainAtoms,tag_atoms
+"""
+Functions to allow a user to create surfaces from completed bulk jobs
+
+Constraints are used to select subsets of completed bulk jobs.
+
+Filters are used to select subsets of the parameter space 
+	for creating a surface (e.g. #layers, vacuum, facet)
+
+Like initializing BulkJobs, there are domains for the parameter space 
+	that need to be defined.
+
+PyMatGen functions are used when possible. 
+
+Output: addition to ase.db
+
+
+
+"""
+
+USER_APPROVAL 	= True
+magmomInit 		= 3
+magElems 		= ['Fe','Mn','Cr','Co','Ni']
+
+#############################
+# Constraints on Job that
+# Generated Initial Structure
+##############################
+essentialConstraints 	= [COMPLETED,SURFACE] #don't change
+constraintsDuJour 	 	= [QE]#al,rpbe,qe]
+
+initialConstraints = essentialConstraints + constraintsDuJour
+
+#################
+# Surface domains
+#################
+surfaceDomain = [x[0] for x in plotQuery(['aseid'],initialConstraints)]
+
+adsFilters = andFilters([hasAdsorbateFilter, hydrogenFilter])
+
+filteredAdsDomain = [a for a in adsDomain if adsFilters['adsorbate'](a)]
+domainProduct = product(surfaceDomain,filteredAdsDomain)
+ncombo = len(surfaceDomain)*len(filteredAdsDomain)
+
+##############
+# Adsorbates #
+##############
+class Adsorbate(object):
+	def __init__(self,pmg,vector): 
+		self.pmg  	= pmg #should be centered around 0,0,0
+		self.vector = vector
+		self.offset = offset
+		
+CO = Molecule(["C", "O"], [[0, 0, 0],[0, 0, 1.3]])
+H  = Molecule(["H"],[[0,0,0]])
+
+molDict = {'CO':CO,'H':H}
+
+def adsorbedSurface(baresurface,adsorbates): 
+	"""
+	Adds adsorbates to bare surface
+	"""
+	slab 	= baresurface.copy()
+	asf 	= AdsorbateSiteFinder(slab)
+
+	b_sites = asf.find_adsorption_sites(distance=1.1,symm_reduce=0)['bridge']
+	o_sites = asf.find_adsorption_sites(distance=1.1,symm_reduce=0)['ontop']
+	h_sites = asf.find_adsorption_sites(distance=1.1,symm_reduce=0)['hollow']
+
+	for ads,sites in adsorbates.items():
+		a = molDict[ads]
+		for (kind,num) in [alphaNumSplit(x) for x in sites]:
+			asf = AdsorbateSiteFinder(slab)
+			if   kind == 'B': slab=asf.add_adsorbate(a,b_sites[int(num)-1])
+			elif kind == 'O': slab=asf.add_adsorbate(a,o_sites[int(num)-1])
+			elif kind == 'H': slab=asf.add_adsorbate(a,h_sites[int(num)-1])
+			else: raise ValueError, "Bad site character in "+str(sites)
+	return slab
+
+
+#############
+# Main Script
+#############
+
+def main():
+	asedb = connect('/scratch/users/ksb/db/ase.db')
+	initialQuestion = ('\n%d relaxed surface structure(s) passed constraints.'%(len(surfaceDomain))
+						+'\nDo you want to create %d slabs?\n(y/n)--> '%(ncombo))
+
+	if raw_input(initialQuestion).lower() in ['y','yes']:
+
+		for combo in domainProduct:
+			ind,ads 	= combo
+			parent 		= asedb.get(ind).get('parent')
+			sites 		= asedb.get(ind).get('sites')
+			structure   = asedb.get(ind).get('structure')
+			grandparent = asedb.get(ind).get('parent')
+			facet 		= asedb.get(ind).get('facet')
+			xy 			= asedb.get(ind).get('xy')
+			layers 		= asedb.get(ind).get('layers')
+			constrained = asedb.get(ind).get('constrained')
+			symmetric 	= asedb.get(ind).get('symmetric')
+			vacuum 		= asedb.get(ind).get('vacuum')
+			vacancies 	= literal_eval(asedb.get(ind).get('vacancies'))
+			
+			facList = [int(z) for z in str(facet)]
+			bare 	= makeSlab(grandparent,facList,layers,symmetric,xy,vacuum)
+
+			adsSurf = adsorbedSurface(bare,ads)
+
+			aseAtoms 	= AseAtomsAdaptor.get_atoms(adsSurf)
+			taggedAtoms = tag_atoms(aseAtoms)
+			taggedAtoms.set_constraint(FixAtoms(indices=constrainAtoms(taggedAtoms,constrained,symmetric)))
+
+			magmoms = [magmomInit if (magmomInit and e in magElems) else 0 for e in taggedAtoms.get_chemical_symbols()] 
+
+			taggedAtoms.set_initial_magnetic_moments(magmoms)
+			taggedAtoms.set_calculator(EMT())
+			taggedAtoms.wrap()
+			
+			for i in vacancies: del taggedAtoms[i] # hopefu
+
+			prettyfacet = '-'.join([x for x in str(facet)])
+			prettyxy 	= '%sx%s'%(str(xy)[0],str(xy)[1])
+			prettyAds 	= printAds(ads)
+			name = '%s_%s_%s'%(asedb.get(parent).get('name'),prettyfacet,prettyxy)
+
+			info = 	{'name': 		name
+					,'relaxed': 	False
+					,'emt': 		taggedAtoms.get_potential_energy()/len(taggedAtoms) # normalize to per-atom basis
+					,'comments': 	'Autogenerated by initializeAdsSurf'
+					,'kind': 		'surface' 											# vs bulk/molecule
+					,'structure':	structure
+					,'parent': 		parent 												#ase object surface was generated from
+					,'sites': 		sites 												
+					,'facet': 		facet								
+					,'xy': 			xy										
+					,'layers': 		layers 														
+					,'constrained': constrained 										
+					,'symmetric':	symmetric 									
+					,'vacuum':		vacuum 							
+					,'vacancies':	vacancies
+					,'adsorbates':  prettyAds}
+
+
+			if USER_APPROVAL: view(taggedAtoms)
+			
+			question = ('Does this structure look right?\nfacet= %s\nlayers = %d\nfixed = %d\n'%(prettyfacet,layers,constrained)
+						+'vacuum = %d\nxy = %s\nads = %s\n\n(y/n) --> '%(vacuum,prettyxy,prettyAds))
+
+			if not USER_APPROVAL or raw_input(question).lower() in ['y','yes']:
+				n = sum([1 for x in asedb.select(parent=ind,facet=fac,xy=xy,layers=l
+						,constrained=constrained,symmetric=symmetric,vacuum=vacuum,vacancies=str(vacancies),adsorbates= prettyAds)])
+				if n > 1: 		raise ValueError, 'Two things already in database have same parameters???'
+				elif n == 1: 	print "matching structure already in database!"
+				else: 
+					asedb.write(taggedAtoms,key_value_pairs=info)
+
+if __name__=='__main__':
+	main()
+

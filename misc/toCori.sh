@@ -1,0 +1,1 @@
+scp -C -r $1 krisb@cori.nersc.gov:scp_tmp/

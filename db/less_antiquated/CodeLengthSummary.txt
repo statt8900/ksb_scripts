@@ -1,0 +1,24 @@
++--------------------------+----------+----------+------+-------------+---------+
+|           File           | Language | Comments | Code | Definitions | Size,kB |
++--------------------------+----------+----------+------+-------------+---------+
+|        bulkjob.py        |  Python  |    29    | 315  |      21     |    14   |
+|      bulkresult.py       |  Python  |    4     |  68  |      8      |    2    |
+|      constraint.py       |  Python  |    35    | 116  |      8      |    8    |
+|       createDB.py        |  Python  |   111    |  11  |      1      |    3    |
+|      createTrajs.py      |  Python  |    23    | 122  |      3      |    7    |
+|          db.py           |  Python  |    37    | 108  |      20     |    7    |
+|        filters.py        |  Python  |    24    |  66  |      26     |    4    |
+|   initializeAdsSurf.py   |  Python  |    64    |  63  |      3      |    5    |
+|  initializeBareSurf.py   |  Python  |    50    | 200  |      9      |    11   |
+| initializeCommonJobs.py  |  Python  |    83    |  32  |      2      |    3    |
+|    initializeJobs.py     |  Python  |    23    |  52  |      1      |    3    |
+| initializeSurfaceJobs.py |  Python  |    21    |  35  |      1      |    3    |
+|          job.py          |  Python  |    6     |  94  |      6      |    4    |
+|      manageJobs.py       |  Python  |    22    |  87  |      24     |    4    |
+|       plotJobs.py        |  Python  |    95    | 119  |      18     |    11   |
+|      printParse.py       |  Python  |    31    |  11  |      23     |    2    |
+|         reset.py         |  Python  |    3     |  18  |      0      |    1    |
+|      surfacejob.py       |  Python  |    19    | 228  |      20     |    10   |
+|    updateSuncatDB.sh     |  Bourne  |    0     |  3   |      0      |    0    |
+|          Total           |    -     |   680    | 1748 |     194     |   102   |
++--------------------------+----------+----------+------+-------------+---------+

@@ -1,0 +1,37 @@
+Configuring direct-sqlite-2.3.20...
+Building direct-sqlite-2.3.20...
+Preprocessing library direct-sqlite-2.3.20...
+[1 of 4] Compiling Database.SQLite3.Bindings.Types ( .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/SQLite3/Bindings/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/SQLite3/Bindings/Types.o )
+[2 of 4] Compiling Database.SQLite3.Bindings ( Database/SQLite3/Bindings.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/SQLite3/Bindings.o )
+[3 of 4] Compiling Database.SQLite3.Direct ( Database/SQLite3/Direct.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/SQLite3/Direct.o )
+
+Database/SQLite3/Direct.hs:147:1: warning: [-Wunused-imports]
+    The import of ‘Data.Monoid’ is redundant
+      except perhaps to import instances from ‘Data.Monoid’
+    To import instances alone, use: import Data.Monoid()
+[4 of 4] Compiling Database.SQLite3 ( Database/SQLite3.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Database/SQLite3.o )
+
+cbits/sqlite3.c:20567:17: error:
+     warning: 'OSAtomicCompareAndSwapPtrBarrier' is deprecated: first deprecated in macOS 10.12 - Use atomic_compare_exchange_strong() from <stdatomic.h> instead [-Wdeprecated-declarations]
+          success = OSAtomicCompareAndSwapPtrBarrier(NULL, newzone, 
+                    ^
+
+/usr/include/libkern/OSAtomicDeprecated.h:547:6: error:
+     note: 'OSAtomicCompareAndSwapPtrBarrier' has been explicitly marked deprecated here
+bool    OSAtomicCompareAndSwapPtrBarrier( void *__oldValue, void *__newValue, void * volatile *__theValue );
+        ^
+1 warning generated.
+
+cbits/sqlite3.c:20567:17: error:
+     warning: 'OSAtomicCompareAndSwapPtrBarrier' is deprecated: first deprecated in macOS 10.12 - Use atomic_compare_exchange_strong() from <stdatomic.h> instead [-Wdeprecated-declarations]
+          success = OSAtomicCompareAndSwapPtrBarrier(NULL, newzone, 
+                    ^
+
+/usr/include/libkern/OSAtomicDeprecated.h:547:6: error:
+     note: 'OSAtomicCompareAndSwapPtrBarrier' has been explicitly marked deprecated here
+bool    OSAtomicCompareAndSwapPtrBarrier( void *__oldValue, void *__newValue, void * volatile *__theValue );
+        ^
+1 warning generated.
+Installing library in
+/Users/kbrown/.stack/snapshots/x86_64-osx/lts-9.1/8.0.2/lib/x86_64-osx-ghc-8.0.2/direct-sqlite-2.3.20-FIMP2HHBou515HppImYqVA
+Registering direct-sqlite-2.3.20...

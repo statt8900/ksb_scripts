@@ -1,0 +1,19 @@
++--------------------+----------+----------+------+-------------+---------+
+|        File        | Language | Comments | Code | Definitions | Size,kB |
++--------------------+----------+----------+------+-------------+---------+
+|     cluster.py     |  Python  |    17    |  96  |      10     |    8    |
+|   constraint.py    |  Python  |    37    | 147  |      20     |    9    |
+|   convergence.py   |  Python  |    0     |  42  |      6      |    1    |
+|    createDB.py     |  Python  |    56    |  16  |      3      |    2    |
+|       db.py        |  Python  |    42    | 103  |      22     |    7    |
+|     details.py     |  Python  |    48    | 221  |      23     |    11   |
+|     filters.py     |  Python  |    24    |  64  |      27     |    4    |
+|       job.py       |  Python  |    44    | 408  |      65     |    20   |
+|     manage.py      |  Python  |    37    |  79  |      16     |    5    |
+|    plotJobs.py     |  Python  |    65    |  69  |      11     |    7    |
+|   printParse.py    |  Python  |    3     |  27  |      10     |    1    |
+|      reset.py      |  Python  |    6     |  17  |      0      |    1    |
+|     result.py      |  Python  |    0     |  50  |      9      |    2    |
+| standardScripts.py |  Python  |    14    | 233  |      12     |    11   |
+|       Total        |    -     |   393    | 1572 |     234     |    89   |
++--------------------+----------+----------+------+-------------+---------+

@@ -1,0 +1,25 @@
++---------------------+----------+----------+------+-------------+---------+
+|         File        | Language | Comments | Code | Definitions | Size,kB |
++---------------------+----------+----------+------+-------------+---------+
+|        ag.py        |  Python  |    0     |  4   |      0      |    0    |
+|        all.sh       |  Bourne  |    0     |  8   |      0      |    0    |
+|    autoUpdate.sh    |  Bourne  |    0     |  2   |      0      |    0    |
+|   checkScripts.py   |  Python  |    0     |  17  |      0      |    0    |
+|       cloc.py       |  Python  |    4     |  30  |      3      |    1    |
+|       cpall.sh      |  Bourne  |    0     |  4   |      0      |    0    |
+|        ewh.py       |  Python  |    0     |  23  |      0      |    1    |
+|     get_hori.py     |  Python  |    0     |  15  |      0      |    0    |
+|      imgcat.sh      |  Bourne  |    14    |  85  |      0      |    2    |
+|    jobSHERLOCK.py   |  Python  |    8     | 121  |      0      |    5    |
+|     jobsSLAC.py     |  Python  |    46    | 154  |      2      |    7    |
+|      nConfig.py     |  Python  |    15    |  18  |      0      |    1    |
+|    prettytable.py   |  Python  |   287    | 938  |     115     |    54   |
+| pwlog2trajectory.py |  Python  |    16    | 115  |      5      |    4    |
+|        rm.sh        |  Bourne  |    0     |  1   |      0      |    0    |
+|        rmx.sh       |  Bourne  |    0     |  39  |      0      |    1    |
+|  screenshotTraj.py  |  Python  |    0     |  36  |      0      |    1    |
+|     traj2cif.py     |  Python  |    0     |  5   |      0      |    0    |
+|  updateSuncatDB.sh  |  Bourne  |    0     |  3   |      0      |    0    |
+|    writePickle.py   |  Python  |    0     |  5   |      0      |    0    |
+|        Total        |    -     |   390    | 1623 |     125     |    77   |
++---------------------+----------+----------+------+-------------+---------+

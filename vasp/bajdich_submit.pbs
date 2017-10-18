@@ -1,0 +1,36 @@
+#!/bin/csh 
+##SBATCH -p debug
+#SBATCH -p regular 
+#SBATCH -N 10 
+##SBATCH -A jcap 
+#SBATCH -A m2416 
+#SBATCH -e error.txt
+#SBATCH -o output.txt
+##SBATCH -t 00:30:00
+#SBATCH -t 02:00:00
+#SBATCH --qos=scavenger
+##SBATCH --qos=premium
+##SBATCH -C haswell 
+## 24 cores (edison) 32 cpus (cori)
+
+module load python numpy scipy #matplotlib
+setenv HOME2 /project/projectdirs/m2416
+setenv PYTHONPATH $HOME2/ase/3.6.1.2603/lib/python2.7/site-packages:$PYTHONPATH
+
+module load vasp-tpc/5.4.1
+which vasp 
+
+cd $SLURM_SUBMIT_DIR
+setenv TMPDIR $SLURM_SUBMIT_DIR
+
+setenv VASP_SCRIPT ./run_vasp.py
+setenv VASP_PP_PATH $HOME2/vasp/pseudo52
+
+echo "import os" > run_vasp.py
+#echo "exitcode = os.system('srun -n 128 vasp_std')" >> run_vasp.py #on edison
+echo "exitcode = os.system('srun -n 240 vasp_std')" >> run_vasp.py #on edison
+
+#python ./setup.py
+#python ./setup_tmp.py
+#python ../setup_tmp_continue.py 
+python /global/cscratch1/sd/bajdich/WO3/scripts/DFT_calculator.py 

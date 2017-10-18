@@ -1,0 +1,20 @@
++---------------------------+----------+----------+------+-------------+---------+
+|            File           | Language | Comments | Code | Definitions | Size,kB |
++---------------------------+----------+----------+------+-------------+---------+
+|          agts.py          |  Python  |    0     |  31  |      2      |    1    |
+|         al.agts.py        |  Python  |    0     |  22  |      0      |    1    |
+|       atomization.py      |  Python  |    4     |  35  |      0      |    1    |
+|      bandstructure.py     |  Python  |    9     |  21  |      0      |    2    |
+| bandstructureSupercell.py |  Python  |    1     |  48  |      0      |    2    |
+|       bulk_metal.py       |  Python  |    18    |  45  |      0      |    3    |
+|         dipole.py         |  Python  |    0     |  20  |      0      |    1    |
+|    dipolecorrection.py    |  Python  |    2     |  47  |      0      |    2    |
+|         gpawrun.py        |  Python  |    5     |  16  |      0      |    1    |
+|           neb.py          |  Python  |    11    |  44  |      0      |    2    |
+|      nebConstraint.py     |  Python  |    10    |  17  |      0      |    1    |
+|         plotwf.py         |  Python  |    3     |  13  |      0      |    1    |
+|        pwdipole.py        |  Python  |    0     |  13  |      0      |    0    |
+|         subGPAW.sh        |  Bourne  |    31    |  8   |      0      |    1    |
+|      subGPAWjvoss.sh      |  Bourne  |    31    |  6   |      0      |    1    |
+|           Total           |    -     |   125    | 386  |      2      |    20   |
++---------------------------+----------+----------+------+-------------+---------+
