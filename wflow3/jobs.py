@@ -3,7 +3,9 @@ import time,random,pickle
 import datetime as d
 # Internal Modules
 import databaseFuncs,cluster
-
+#LEts add this line
+def kris():
+	print 'is stupid'
 
 """
 Description:
