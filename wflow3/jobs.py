@@ -1,6 +1,6 @@
 #External Modules
 import time,random,pickle
-import datetime as d		
+import datetime as d
 # Internal Modules
 import databaseFuncs,cluster
 
@@ -19,7 +19,7 @@ Notes:
 
 class Job(object):
 	"""Methods valid for all jobs"""
-	
+
 	def __init__(self,params):
 		self.params  		= params
 		self.jobkind 		= self.params['jobkind']		# STRING
@@ -33,7 +33,7 @@ class Job(object):
 		self.dftcode= self.params['dftcode'] 	# STRING
 
 
-	
+
 	def generalCheck(self):
 		essential = set(['jobkind','inittraj_pckl','comments','name','kind'
 						,'pw','xc','kptden','psp','dwrat','econv','mixing','nmix','maxstep','nbands','sigma','fmax','dftcode']) & set(self.kindEssentials()) & set(self.jobEssentials())
@@ -54,7 +54,7 @@ class Job(object):
 		elif self.jobkind in ['relax','vcrelax','xc']: return []
 		else: raise NotImplementedError, 'unknown job kind '+self.jobkind
 
-	def __str__(self): 
+	def __str__(self):
 		def wrapper(listx): return '_'.join(map(str,listx))
 		def strTraj(self): return wrapper([getattr(pickle.loads(self.inittraj_pckl),x)() for x in ['get_atomic_numbers','get_positions','get_cell','get_initial_magnetic_moments']]).replace('\n','')
 		def strCalc(self): return wrapper([self.params[x] for x in ['pw','xc','kptden','psp','dwrat','econv','mixing','nmix','maxstep','nbands','sigma','fmax','dftcode']])
@@ -62,12 +62,12 @@ class Job(object):
 		def strJob(self):  return wrapper([self.params[x] for x in self.jobEssentials()])
 		return wrapper([ self.jobkind, strTraj(self), strCalc(self) ,strKind(self) , strJob(self)]).replace(' ','')
 
-	def new(self,listOfIncompleteJobStrs=[]):  
+	def new(self,listOfIncompleteJobStrs=[]):
 		if not databaseFuncs.anyQuery('strjob = \'%s\''%str(self)):
 			if str(self) not in listOfIncompleteJobStrs: return True
 		return False
 
-	def submit(self,listOfIncompleteJobStrs=[]): 
+	def submit(self,listOfIncompleteJobStrs=[]):
 		""" use manageIncompleteJobs.listOfIncompleteJobStrs()"""
 		from fireworks  import LaunchPad
 		self.generalCheck()
@@ -77,13 +77,13 @@ class Job(object):
 			launchpad.add_wf(wflow)
 			time.sleep(2) # folder names are unique due to timestamp to the nearest second
 			return 1
-		else: 
+		else:
 			print 'Repeat job!'
 			return 0
 
 	def allocate(self,n):
 		if self.dftcode == 'gpaw':	return [cluster.sherlockgpaw]*n
-		elif self.dftcode == 'quantumespresso':  
+		elif self.dftcode == 'quantumespresso':
 			rand=[]
 			def odds(randomx):
 				if randomx < 0.3: 	return cluster.suncat
@@ -91,7 +91,7 @@ class Job(object):
 			for i in range(n): rand.append(random.random())
 			return [odds(x) for x in rand]
 
-	def guessTime(self): 
+	def guessTime(self):
 		baseline = 5 # CHANGE THIS
 		multFactor = self.pw/400.0 * self.kptden/2*(4 if self.xc=='mBEEF' else 1)
 		multFactor *= 3 if 'hcp' in self.name else 1
@@ -104,9 +104,9 @@ class Job(object):
 					,'xc': GetXCcontribs(),'vib': Vibrations()}
 		return scriptDict[self.jobkind]
 
-	def wflow(self): 
+	def wflow(self):
 		from fireworks   		import Firework,Workflow
-		
+
 		cluster = self.allocate(1)[0]
 		timestamp = '_'+d.datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 
@@ -117,4 +117,3 @@ class Job(object):
 								,'_queueadapter': 	cluster.qfunc(self.guessTime())
 								,'_launch_dir': 	cluster.launchdir+self.jobkind+timestamp})
 		return Workflow([fw1],name=self.jobkind)
-
