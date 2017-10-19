@@ -1,8 +1,9 @@
 
 #External Modules
 import os,fireworks,json,glob
-
-
+#Adding comments in kris
+#I want this only to show up in kris_edit
+#Lets save this 
 #################################
 # Auxillary functions for scripts
 #################################
