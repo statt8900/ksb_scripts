@@ -3,3 +3,5 @@ def read_all(file):
 
 def second_function():
 	print 'yay'
+
+Sara sucks
